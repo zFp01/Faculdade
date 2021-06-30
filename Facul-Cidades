@@ -1,0 +1,75 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+int main(void) {
+
+int matriz[6][6]={  
+0,1,2,3,4,5, 
+1,0,15,30,5,12,
+2,15,0,10,17,28,
+3,30,10,0,3,11,
+4,5,17,3,0,80,
+5,12,28,11,80,0 
+};
+char senha[4]="eofp"; //Senha: eofp
+char permissao[50]="";
+int c1 = 1; //Ponto A
+int c2 = 2; //Ponto B
+int tp = 0; //Total Percorrido 
+
+printf("Digite a Senha de 4 Digitos:\n");
+scanf("%s", permissao);
+if ((strcmp(permissao, senha) == 0)){
+  printf("Senha Correta!\n");
+}
+
+while (strcmp(permissao, senha) != 0) {
+  printf("Senha Incorreta, Digite novamente a senha por favor:\n");
+  scanf("%s", permissao);
+}
+printf("Acesso Concedido.\n\n");
+
+printf("     [1] [2] [3] [4] [5]  --> Cidades\n");
+printf("[1] - %d   %d  %d %d   %d\n", matriz[1][1], matriz[1][2], matriz[1][3], matriz[1][4], matriz[1][5]);
+printf("[2] - %d  %d   %d %d  %d\n", matriz[2][1], matriz[2][2], matriz[2][3], matriz[2][4], matriz[2][5]);
+printf("[3] - %d  %d  %d  %d   %d\n", matriz[3][1], matriz[3][2], matriz[3][3], matriz[3][4], matriz[3][5]);
+printf("[4] - %d   %d  %d  %d   %d\n", matriz[4][1], matriz[4][2], matriz[4][3], matriz[4][4], matriz[4][5]);
+printf("[5] - %d  %d  %d %d  %d", matriz[5][1], matriz[5][2], matriz[5][3], matriz[5][4], matriz[5][5]);
+
+while(c1!=0 && c2!=0){
+printf("\n\nDigite os índices das cidades:");
+printf("\nDigite a Cidade1(Ponto A) por favor:");
+scanf("%d", &c1);
+while(c1>5 || c1<0){
+printf("\nNúmero Inválido!\nDigite novamente a Cidade1(Ponto A) por favor:");
+scanf("%d", &c1);
+}
+printf("Digite a Cidade2(Ponto B) por favor:");
+scanf("%d", &c2);
+if(c1==0 && c2==0){
+break;
+}
+while(c2>5 || c2<0){
+printf("\nNúmero Inválido!\nDigite a Cidade1(Ponto B) por favor:");
+scanf("%d", &c2);
+}
+while(c1-c2==c1 || c2-c1==c2){
+printf("\nNúmeros Inválidos!\nComece de novo.\nDigite novamente a Cidade1(Ponto A) por favor:");
+scanf("%d", &c1);
+printf("\nDigite a Cidade2(Ponto B) por favor:");
+scanf("%d", &c2);
+if(c1==0 && c2==0){
+break;
+}
+}
+int distancia = matriz[c1][c2]; // Salvando os Índices 
+printf("%d %s", distancia,"Km de distancia!\n");
+tp += distancia;
+}
+printf("\nPrograma Encerrado!");
+printf("\nA Distância total Percorrida foi de: %d %s", tp,"km");
+
+getchar();
+  return 0;
+}
